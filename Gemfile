@@ -10,9 +10,6 @@ gem "puma", ">= 5.0"
 # for storing api keys
 gem 'dotenv-rails', groups: [:development, :test]
 
-# preloads the app, any thime there is a change in the code, the server will restart
-gem 'zeus', groups: [:development, :test]
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
