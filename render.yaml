@@ -1,12 +1,12 @@
 databases:
-  - name: the-cinephile
-    databaseName: the-cinephile
-    user: the-cinephile
+  - name: thecinephile
+    databaseName: thecinephile
+    user: thecinephile
     plan: free
 
 services:
   - type: web
-    name: the-cinephile
+    name: thecinephile
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: the-cinephile
+          name: thecinephile
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
