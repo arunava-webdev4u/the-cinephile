@@ -5,7 +5,7 @@ gem "rails", "~> 8.0.1"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem "puma", "~> 6.0" 
 
 # for storing api keys
 gem 'dotenv-rails', groups: [:development, :test]
@@ -51,3 +51,13 @@ group :development, :test do
 end
 
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker' # (Optional: for generating test data)
+end
+
+group :test do
+  gem 'database_cleaner-active_record' # Helps with cleaning test DB
+  gem 'shoulda-matchers' # Provides better matchers for models
+end
