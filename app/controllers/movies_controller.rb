@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   def search_movies_by_name
     query = params[:query]
     if query.present?
@@ -7,7 +6,7 @@ class MoviesController < ApplicationController
       @movies = tmdb_service.search_movies(query)
       render json: @movies
     else
-      render json: { error: 'Query parameter is missing' }, status: :bad_request
+      render json: { error: "Query parameter is missing" }, status: :bad_request
     end
   end
 
@@ -18,7 +17,7 @@ class MoviesController < ApplicationController
       @tv_shows = tmdb_service.search_tv_shows(query)
       render json: @tv_shows
     else
-      render json: { error: 'Query parameter is missing' }, status: :bad_request
+      render json: { error: "Query parameter is missing" }, status: :bad_request
     end
   end
 
@@ -33,7 +32,7 @@ class MoviesController < ApplicationController
     if @popular.present?
       render json: @popular
     else
-      render json: { error: 'No popular movies found' }, status: :not_found
+      render json: { error: "No popular movies found" }, status: :not_found
     end
   end
 
@@ -44,7 +43,7 @@ class MoviesController < ApplicationController
     if @top_rated.present?
       render json: @top_rated
     else
-      render json: { error: 'No top_rated movies found' }, status: :not_found
+      render json: { error: "No top_rated movies found" }, status: :not_found
     end
   end
 
@@ -55,7 +54,7 @@ class MoviesController < ApplicationController
     if @upcoming.present?
       render json: @upcoming
     else
-      render json: { error: 'No upcoming movies found' }, status: :not_found
+      render json: { error: "No upcoming movies found" }, status: :not_found
     end
   end
 
@@ -66,8 +65,7 @@ class MoviesController < ApplicationController
     if @now_playing.present?
       render json: @now_playing
     else
-      render json: { error: 'No now_playing movies found' }, status: :not_found
+      render json: { error: "No now_playing movies found" }, status: :not_found
     end
   end
-
 end

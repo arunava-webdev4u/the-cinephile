@@ -1,35 +1,35 @@
 class TmdbService
-    require 'uri'
-    require 'net/http'
-    require 'json'
-  
+    require "uri"
+    require "net/http"
+    require "json"
+
     # https://developer.themoviedb.org/reference/person-popular-list  - TODO
 
 
 
     # Search by Names
     def search_tv_shows(query)
-        search_by_name(query, 'tv')
+        search_by_name(query, "tv")
     end
     def search_movies(query)
-        search_by_name(query, 'movie')
+        search_by_name(query, "movie")
     end
 
 
     # Trendings
-    def trending_movies()
-        get_trending('movie')
+    def trending_movies
+        get_trending("movie")
     end
-    def trending_people()
-        get_trending('people')
+    def trending_people
+        get_trending("people")
     end
-    def trending_tv_shows()
-        get_trending('shows')
+    def trending_tv_shows
+        get_trending("shows")
     end
 
 
     # Movie Lists
-    def popular        
+    def popular
         url = URI("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc")
         tmdb_request(url)
     end
@@ -83,9 +83,9 @@ class TmdbService
         http.use_ssl = true
 
         request = Net::HTTP::Get.new(url)
-        request["accept"] = 'application/json'
-        request["Authorization"] = 'Bearer ' + ENV['TMDB_API_READ_ACCESS_TOKEN']
-    
+        request["accept"] = "application/json"
+        request["Authorization"] = "Bearer " + ENV["TMDB_API_READ_ACCESS_TOKEN"]
+
         response = http.request(request)
         JSON.parse(response.body)
     end
