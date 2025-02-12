@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root to: redirect("/api/v1/home")
 
   namespace :api do
     namespace :v1 do
+      get "home", to: "home#index"
+
       resources :movies, only: [] do
         collection do
           get :search, defaults: { format: :json }

@@ -1,0 +1,33 @@
+First:
+1. Complete All required endpoints (Popular people etc)
+2. Add integration test for all of them
+3. Add unit tests for all of them
+4. Prepare api doc for all the endpoints
+
+
+Second:
+Refactor(Optimize) service <-> controller code
+
+
+Third:
+Finish User model and routes (with unit & integration tests)
+
+Fourth:
+1. Add functionality to CRUD for Lists
+2. Add Default Lists (Watchlist, Favourites)
+
+Fifth:
+Add basic authentication
+
+Sixth:
+1. Create Admin routes (with unit & integration tests)
+2. Add Authorization for admin routes
+
+
+
+
+
+Future:
+Like & Review Movies
+Chat & Connect With Cinephiles
+Add 3rd party auth
