@@ -1,5 +1,5 @@
 class Api::V1::MoviesController < Api::V1::ApplicationController
-  def search_movies_by_name
+  def search
     query = params[:query]
     if query.present?
       tmdb_service = TmdbService.new
@@ -9,18 +9,6 @@ class Api::V1::MoviesController < Api::V1::ApplicationController
       render json: { error: "Query parameter is missing" }, status: :bad_request
     end
   end
-
-  # def search_tv_shows_by_name
-  #   query = params[:query]
-  #   if query.present?
-  #     tmdb_service = TmdbService.new
-  #     @tv_shows = tmdb_service.search_tv_shows(query)
-  #     render json: @tv_shows
-  #   else
-  #     render json: { error: "Query parameter is missing" }, status: :bad_request
-  #   end
-  # end
-
 
   def popular
     tmdb_service = TmdbService.new
