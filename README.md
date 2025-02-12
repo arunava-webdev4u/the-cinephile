@@ -1,5 +1,5 @@
 # 📽️ The Cinephile
-An API-only **(Backend)** Rails application that allows users to create and manage their favourite movie lists, fetch trending movies & TV shows review movies and interact with other cinephiles. It uses TMDB api under the hood. 
+An API-only **(Backend)** Rails application that allows users to create and manage their favorite movie lists, fetch trending movies & TV shows, review movies, and interact with other cinephiles. 
 
 ## 🛠️ Tech Stack
 ***The frontend part is available here: [The Cinephile Frontend](https://github.com/arunava-webdev4u/the-cinephile-frontend)***
@@ -36,7 +36,14 @@ TMDB_API_KEY=your_api_key_here
 ```sh
 rails server
 ```
-
+### 6️⃣ Run Tests
+```sh
+rspec
+```
+### 7️⃣ Run Linter
+```sh
+rubocop
+```
 
 ## 🗺️ Project Diagrams
 This project uses **Draw.io** (diagrams.net) for architectural and flow diagrams. We maintain both source (.drawio) and generated (.png) files in version control for easy visualization on GitHub.
