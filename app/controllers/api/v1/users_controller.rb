@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::ApplicationController
     # Skip CSRF token verification since it's an API-only project
     # skip_before_action :verify_authenticity_token
 
@@ -13,11 +13,11 @@ class UsersController < ApplicationController
       end
     end
 
-    # GET /users
-    def index
-      @users = User.all
-      render json: @users
-    end
+    # # GET /users
+    # def index
+    #   @users = User.all
+    #   render json: @users
+    # end
 
     # GET /users/:id
     def show
