@@ -14,6 +14,12 @@
 /config/master.key
 /config/credentials/*.key
 
+# Ignore custom script
+/bin/tools/*
+
+# Ignore all docs
+/doc/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
