@@ -47,8 +47,8 @@ This project uses **Draw.io** (diagrams.net) for architectural and flow diagrams
 - Create or edit diagrams using Draw.io Desktop
 - Save your .drawio files in appropriate location (can be anywhere in the project)
 - Generate PNG versions using the conversion script:
-    Convert only modified diagrams: `ruby bin/tools/convert_diagrams.rb`
-    Force convert all diagrams: `ruby bin/tools/convert_diagrams.rb --force`
+    - Convert only modified diagrams: `ruby bin/tools/convert_diagrams.rb`
+    - Force convert all diagrams: `ruby bin/tools/convert_diagrams.rb --force`
 
 ## 📡 API Endpoints
 ### 🎬 Movies
