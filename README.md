@@ -1,8 +1,8 @@
 # 📽️ The Cinephile
-An API-only Rails application that allows users to create and manage their favourite movie lists, fetch trending movies & TV shows review movies and interact with other cinephiles. It uses TMDB api under the hood. 
+An API-only **(Backend)** Rails application that allows users to create and manage their favourite movie lists, fetch trending movies & TV shows review movies and interact with other cinephiles. It uses TMDB api under the hood. 
 
 ## 🛠️ Tech Stack
-(The frontend part is available on: www.github.com/somerepo)
+***The frontend part is available here: [The Cinephile Frontend](https://github.com/arunava-webdev4u/the-cinephile-frontend)***
 - **🖥️ Backend:** Ruby on Rails (API-only)
     - **💎 Ruby Version:** `3.3.7 (2025-01-15 revision be31f993d7)`
     - **🛤️ Rails Version:** `8.0.1`
