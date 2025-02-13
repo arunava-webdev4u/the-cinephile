@@ -13,7 +13,7 @@ RSpec.describe Api::V1::TvshowsController, type: :request do
             let(:mock_tv_shows) do
                 [
                     { "id" => 123, "name" => "Breaking Bad", "overview" => "A high school teacher turns meth producer." },
-                    {  "id" => 456, "name" => "Breaking Bad Habbit", "overview" => "A documentary about bad habits." }
+                    { "id" => 456, "name" => "Breaking Bad Habbit", "overview" => "A documentary about bad habits." }
                 ]
             end
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::TvshowsController, type: :request do
                 expect(response).to have_http_status(:ok)
             end
 
-            it "returns the expected TV show results" do
+            it "returns the expected TV shows" do
                 json_response = JSON.parse(response.body)
                 expect(json_response).to eq(mock_tv_shows)
             end
