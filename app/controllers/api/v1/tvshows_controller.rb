@@ -1,8 +1,7 @@
-class Api::V1::TvshowsController < Api::V1::ApplicationController
+class Api::V1::TvshowsController < Api::V1::BaseController
   def search
     query = params[:query]
     if query.present?
-      tmdb_service = TmdbService.new
       @tv_shows = tmdb_service.search_tv_shows(query)
       render json: @tv_shows
     else
@@ -11,7 +10,6 @@ class Api::V1::TvshowsController < Api::V1::ApplicationController
   end
 
   def airing_today
-    tmdb_service = TmdbService.new
     @airing_today = tmdb_service.airing_today
 
     if @airing_today.present?
@@ -22,7 +20,6 @@ class Api::V1::TvshowsController < Api::V1::ApplicationController
   end
 
   def on_the_air
-    tmdb_service = TmdbService.new
     @on_the_air = tmdb_service.on_the_air
 
     if @on_the_air.present?
@@ -33,7 +30,6 @@ class Api::V1::TvshowsController < Api::V1::ApplicationController
   end
 
   def popular
-    tmdb_service = TmdbService.new
     @popular = tmdb_service.popular
 
     if @popular.present?
@@ -44,7 +40,6 @@ class Api::V1::TvshowsController < Api::V1::ApplicationController
   end
 
   def top_rated
-    tmdb_service = TmdbService.new
     @top_rated = tmdb_service.top_rated
 
     if @top_rated.present?

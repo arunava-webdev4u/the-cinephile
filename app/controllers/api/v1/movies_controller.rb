@@ -1,8 +1,7 @@
-class Api::V1::MoviesController < Api::V1::ApplicationController
+class Api::V1::MoviesController < Api::V1::BaseController
   def search
     query = params[:query]
     if query.present?
-      tmdb_service = TmdbService.new
       @movies = tmdb_service.search_movies(query)
       render json: @movies
     else
@@ -11,7 +10,6 @@ class Api::V1::MoviesController < Api::V1::ApplicationController
   end
 
   def popular
-    tmdb_service = TmdbService.new
     @popular = tmdb_service.popular
 
     if @popular.present?
@@ -22,7 +20,6 @@ class Api::V1::MoviesController < Api::V1::ApplicationController
   end
 
   def top_rated
-    tmdb_service = TmdbService.new
     @top_rated = tmdb_service.top_rated
 
     if @top_rated.present?
@@ -33,7 +30,6 @@ class Api::V1::MoviesController < Api::V1::ApplicationController
   end
 
   def upcoming
-    tmdb_service = TmdbService.new
     @upcoming = tmdb_service.upcoming
 
     if @upcoming.present?
@@ -44,7 +40,6 @@ class Api::V1::MoviesController < Api::V1::ApplicationController
   end
 
   def now_playing
-    tmdb_service = TmdbService.new
     @now_playing = tmdb_service.now_playing
 
     if @now_playing.present?
