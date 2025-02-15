@@ -9,6 +9,16 @@ class Api::V1::TvshowsController < Api::V1::BaseController
     end
   end
 
+  def trending
+    @trending_tv_shows = tmdb_service.trending_tv_shows
+
+    if @trending_tv_shows.present?
+      render json: @trending_tv_shows
+    else
+      render json: { error: "No trending_tv_shows movies found" }, status: :not_found
+    end
+  end
+
   def airing_today
     @airing_today = tmdb_service.airing_today
 

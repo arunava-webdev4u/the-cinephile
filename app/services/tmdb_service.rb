@@ -24,7 +24,7 @@ class TmdbService
         get_trending("people")
     end
     def trending_tv_shows
-        get_trending("shows")
+        get_trending("tv")
     end
 
 
