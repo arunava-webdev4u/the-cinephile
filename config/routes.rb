@@ -27,6 +27,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :persons, only: [] do
+        collection do
+          get :search, defaults: { format: :json }
+          get :trending, defaults: { format: :json }
+        end
+      end
+
       resource :users, only: [ :create, :show ]
     end
   end

@@ -46,7 +46,7 @@ RSpec.describe Api::V1::TvshowsController, type: :request do
         end
     end
 
-    
+
     describe "GET /api/v1/tvshows/trending" do
         let(:tmdb_service) { instance_double(TmdbService) }
         let(:mock_tv_shows) do

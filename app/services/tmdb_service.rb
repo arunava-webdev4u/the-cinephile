@@ -4,7 +4,7 @@ class TmdbService
     require "json"
 
     # https://developer.themoviedb.org/reference/person-popular-list  - TODO
-
+    # http://image.tmdb.org/t/p/w200/{img}
 
 
     # Search by Names
@@ -14,14 +14,17 @@ class TmdbService
     def search_movies(query)
         search_by_name(query, "movie")
     end
+    def search_persons(query)
+        search_by_name(query, "person")
+    end
 
 
     # Trendings
     def trending_movies
         get_trending("movie")
     end
-    def trending_people
-        get_trending("people")
+    def trending_persons
+        get_trending("person")
     end
     def trending_tv_shows
         get_trending("tv")
