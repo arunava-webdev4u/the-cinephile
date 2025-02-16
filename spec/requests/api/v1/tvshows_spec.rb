@@ -46,6 +46,32 @@ RSpec.describe Api::V1::TvshowsController, type: :request do
         end
     end
 
+    
+    describe "GET /api/v1/tvshows/trending" do
+        let(:tmdb_service) { instance_double(TmdbService) }
+        let(:mock_tv_shows) do
+            [
+                { "id" => 123, "name" => "Breaking Bad", "overview" => "A high school teacher turns meth producer." },
+                { "id" => 456, "name" => "Breaking Bad Habbit", "overview" => "A documentary about bad habits." }
+            ]
+        end
+
+        before do
+            allow(TmdbService).to receive(:new).and_return(tmdb_service)
+            allow(tmdb_service).to receive(:trending_tv_shows).and_return(mock_tv_shows)
+            get "/api/v1/tvshows/trending"
+        end
+
+        it "returns a success response" do
+            expect(response).to have_http_status(:ok)
+        end
+
+        it "returns the trending tvshows" do
+            json_response = JSON.parse(response.body)
+            expect(json_response).to eq(mock_tv_shows)
+        end
+    end
+
     describe "GET /api/v1/tvshows/airing_today" do
         let(:tmdb_service) { instance_double(TmdbService) }
         let(:mock_tv_shows) do

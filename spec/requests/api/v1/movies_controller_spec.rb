@@ -46,6 +46,31 @@ RSpec.describe Api::V1::MoviesController, type: :request do
         end
     end
 
+    describe "GET /api/v1/movies/trending" do
+        let(:tmdb_service) { instance_double(TmdbService) }
+        let(:mock_movies) do
+            [
+                { "id" => 123, "name" => "Avatar", "overview" => "Jake, a paraplegic marine, replaces his brother on the Na'vi-inhabited Pandora for a corporate mission. He is accepted by the natives as one of their own, but he must decide where his loyalties lie." },
+                { "id" => 456, "name" => "Avatar 2", "overview" => "Jake Sully and Ney'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans." }
+            ]
+        end
+
+        before do
+            allow(TmdbService).to receive(:new).and_return(tmdb_service)
+            allow(tmdb_service).to receive(:trending_movies).and_return(mock_movies)
+            get "/api/v1/movies/trending"
+        end
+
+        it "returns a success response" do
+            expect(response).to have_http_status(:ok)
+        end
+
+        it "returns the trending movies" do
+            json_response = JSON.parse(response.body)
+            expect(json_response).to eq(mock_movies)
+        end
+    end
+
     describe "GET /api/v1/movies/popular" do
         let(:tmdb_service) { instance_double(TmdbService) }
         let(:mock_movies) do
