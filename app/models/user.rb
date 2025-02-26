@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     COUNTRIES = [ "United States", "Canada", "India", "United Kingdom", "Australia", "China" ]
+    VALID_EMAIL_DOMAINS = [ "@gmail.com", "@yahoo.com", "@protonmail.com" ]
     before_validation :strip_whitespace, :normalize_email, :normalize_country
 
     validates :first_name, :last_name, :email, :date_of_birth, presence: true
@@ -8,7 +9,7 @@ class User < ApplicationRecord
     validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "must contain only alphabets" }
     validates :country, format: { with: /\A[a-zA-Z\s]+\z/, message: "must contain only letters and spaces" }, inclusion: { in: COUNTRIES, message: "is not in our country list" }
 
-    validate :validate_date_of_birth
+    validate :validate_date_of_birth, :validate_email_domain
 
     private
 
@@ -22,6 +23,16 @@ class User < ApplicationRecord
         if date_of_birth > Date.current
             errors.add(:date_of_birth, "can not be today or a future date")
         end
+    end
+
+    def validate_email_domain
+        return if email.blank?
+
+        VALID_EMAIL_DOMAINS.each do |domain|
+            return if email.include?(domain)
+        end
+
+        errors.add(:email, "domain is not supported")
     end
 
     def normalize_email

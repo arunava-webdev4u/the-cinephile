@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     {
       first_name: 'John',
       last_name: 'Doe',
-      email: 'john.doe@example.com',
+      email: 'john.doe@gmail.com',
       date_of_birth: '1990-01-01',
       country: 'India'
     }
@@ -63,6 +63,12 @@ RSpec.describe User, type: :model do
           user = User.new(valid_attributes.merge(email: 'invalid-email'))
           expect(user).not_to be_valid
           expect(user.errors[:email]).to include('is invalid')
+        end
+
+        it 'must have a supported email domain' do\
+          user = User.new(valid_attributes.merge(email: 'arunava.das@example.com'))
+          expect(user).not_to be_valid
+          expect(user.errors[:email]).to include('domain is not supported')
         end
       end
 
