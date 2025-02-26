@@ -1,8 +1,8 @@
 First:
-1. Complete All required endpoints (Popular people etc)
+1. Complete All required endpoints (Popular people etc) -----------------DONE-------------------
 2. Add integration test for all of them
 3. Add unit tests for all of them
-4. Prepare api doc for all the endpoints
+4. Prepare api doc for all the endpoints [Not very important]
 
 
 Second:

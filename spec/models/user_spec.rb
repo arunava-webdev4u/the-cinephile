@@ -7,16 +7,7 @@ RSpec.describe User, type: :model do
       last_name: 'Doe',
       email: 'john.doe@example.com',
       date_of_birth: '1990-01-01',
-      country: 'USA'
-    }
-  end
-
-  let(:invalid_attributes) do
-    {
-      first_name: nil,
-      last_name: nil,
-      email: nil,
-      date_of_birth: nil
+      country: 'India'
     }
   end
 
@@ -27,30 +18,30 @@ RSpec.describe User, type: :model do
     end
 
       context 'first_name validations' do
-        it "first_name is valid with valid data" do
-        end
-
         it 'first_name can not be empty' do
           user = User.new(valid_attributes.merge(first_name: nil))
           expect(user).not_to be_valid
           expect(user.errors[:first_name]).to include("can't be blank")
         end
 
-        it 'first_name should contain only alphabets' do
+        it 'first_name must contain only alphabets' do
+          user = User.new(valid_attributes.merge(first_name: 'John123'))
+          expect(user).not_to be_valid
+          expect(user.errors[:first_name]).to include('must contain only alphabets')
         end
       end
 
       context 'last_name validations' do
-        it 'is not valid without a last_name' do
+        it 'last_name can not be empty' do
           user = User.new(valid_attributes.merge(last_name: nil))
           expect(user).not_to be_valid
           expect(user.errors[:last_name]).to include("can't be blank")
         end
 
-        it 'last_name should contain only alphabets' do
-        end
-
-        it "first_name is valid with valid data" do
+        it 'last_name must contain only alphabets' do
+          user = User.new(valid_attributes.merge(last_name: 'Doe123'))
+          expect(user).not_to be_valid
+          expect(user.errors[:last_name]).to include('must contain only alphabets')
         end
       end
 
@@ -80,6 +71,31 @@ RSpec.describe User, type: :model do
           user = User.new(valid_attributes.merge(date_of_birth: nil))
           expect(user).not_to be_valid
           expect(user.errors[:date_of_birth]).to include("can't be blank")
+        end
+
+        it 'date_of_birth must be a valid date' do
+          user = User.new(valid_attributes.merge(date_of_birth: 'abcd-xy-00'))
+          expect(user).not_to be_valid
+        end
+
+        it 'date_of_birth cant be a future date' do
+          user = User.new(valid_attributes.merge(date_of_birth: Date.current + 1.day))
+          expect(user).not_to be_valid
+          expect(user.errors[:date_of_birth]).to include('can not be today or a future date')
+        end
+      end
+
+      context 'country validations' do
+        it 'must contain only letters and spaces' do
+          user = User.new(valid_attributes.merge(country: 'Canada2025'))
+          expect(user).not_to be_valid
+          expect(user.errors[:country]).to include('must contain only letters and spaces')
+        end
+
+        it 'must be in our country list' do
+          user = User.new(valid_attributes.merge(country: 'Tiwan'))
+          expect(user).not_to be_valid
+          expect(user.errors[:country]).to include('is not in our country list')
         end
       end
   end
