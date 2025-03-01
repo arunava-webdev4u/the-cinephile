@@ -1,0 +1,3 @@
+class CustomList < List
+    
+end

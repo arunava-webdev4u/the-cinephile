@@ -1,0 +1,3 @@
+class CommonList < List
+    
+end

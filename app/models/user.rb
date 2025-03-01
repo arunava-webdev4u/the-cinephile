@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+    has_many :lists
+    after_create :create_fixed_lists
+
     COUNTRIES = [ "United States", "Canada", "India", "United Kingdom", "Australia", "China" ]
     VALID_EMAIL_DOMAINS = [ "@gmail.com", "@yahoo.com", "@protonmail.com" ]
     before_validation :strip_whitespace, :normalize_email, :normalize_country
@@ -48,5 +51,12 @@ class User < ApplicationRecord
         self.last_name = last_name.strip if last_name.present?
         self.email = email.strip if email.present?
         self.country = country.strip if country.present?
+    end
+
+    def create_fixed_lists
+        FixedList.create(user: self, name: "WatchList")
+        FixedList.create(user: self, name: "Watched")
+        FixedList.create(user: self, name: "Favourite Movies")
+        FixedList.create(user: self, name: "Favourite TV Shows")
     end
 end
