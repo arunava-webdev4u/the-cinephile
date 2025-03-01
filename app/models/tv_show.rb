@@ -1,0 +1,2 @@
+class TvShow < ListItem
+end
