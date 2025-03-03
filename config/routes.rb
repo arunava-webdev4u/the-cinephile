@@ -34,7 +34,8 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :users, only: [ :create, :show ]
+      resources :users
+      resources :lists
     end
   end
 end

@@ -2,7 +2,15 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     # Skip CSRF token verification since it's an API-only project
     # skip_before_action :verify_authenticity_token
 
-    # POST /users
+    def index
+      @users = User.all
+      if @users
+        render json: @users, status: :ok
+      else
+        render json: @users.errors, status: :not_found
+      end
+    end
+
     def create
       @user = User.new(user_params)
 
@@ -13,13 +21,6 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       end
     end
 
-    # # GET /users
-    # def index
-    #   @users = User.all
-    #   render json: @users
-    # end
-
-    # GET /users/:id
     def show
       @user = User.find_by(id: params[:id])
 
@@ -30,9 +31,14 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       end
     end
 
+    # def update
+    # end
+
+    # def delete
+    # end
+
     private
 
-    # Only allow a list of trusted parameters through
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :date_of_birth, :country)
     end
