@@ -1,12 +1,12 @@
 databases:
   - name: the_cinephile_production
     databaseName: the_cinephile_production
-    user: the_cinephile
+    user: the_cinephile_production
     plan: free
 
 services:
   - type: web
-    name: the-cinephile
+    name: the_cinephile_production
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
