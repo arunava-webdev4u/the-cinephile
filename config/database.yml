@@ -83,7 +83,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: the_cinephile_production
+    database: ENV['DATABASE_URL']
     username: the_cinephile
     password: <%= ENV["THE_CINEPHILE_DATABASE_PASSWORD"] %>
   cache:
