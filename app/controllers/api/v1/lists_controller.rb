@@ -1,6 +1,6 @@
 class Api::V1::ListsController < Api::V1::BaseController
     def index
-        user_id = 1
+        user_id = 1         # for now, create for user_id = 1
 
         render json: { message: "Invalid user_id"}, status: :unprocessable_entity unless user_id
 
@@ -31,6 +31,22 @@ class Api::V1::ListsController < Api::V1::BaseController
         else
             render json: { message: "Can't Create"}, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        list_id = params[:id]
+        list = CustomList.find(list_id)
+        list.delete
+        render json: { message: "List Deleted" }, status: :ok
+    end
+
+    def update
+        list_id = params[:id]
+        list = CustomList.find(list_id)
+        list.name = params[:list][:name]
+        list.description = params[:list][:description]
+        list.save
+        render json: { message: "List Updated" }, status: :ok
     end
     
     private
