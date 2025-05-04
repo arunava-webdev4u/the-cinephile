@@ -1,6 +1,6 @@
 class Api::V1::ListsController < Api::V1::BaseController
     def index
-        user_id = 1         # for now, create for user_id = 1
+        user_id = 2         # for now, create for user_id = 1
 
         render json: { message: "Invalid user_id"}, status: :unprocessable_entity unless user_id
 
@@ -24,7 +24,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
     def create
         new_list = CustomList.new(permitted_params)
-        new_list.user_id = 1            # for now, create for user_id = 1
+        new_list.user_id = 2            # for now, create for user_id = 1
 
         if new_list.save!
             render json: new_list, status: :created
